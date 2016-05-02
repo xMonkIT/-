@@ -1,0 +1,61 @@
+﻿@using lab8.Models
+@model lab8.Models.Post
+
+@{
+    ViewBag.Title = "PostView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PostView</h2>
+
+<fieldset>
+    <legend>Post</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Content)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+
+    @if (Model.Comment.Count > 0)
+    {
+        <div>
+            <div class="display-label">Комментарии</div>
+            @foreach (var comment in Model.Comment)
+            {
+                <div class="display-field comment">
+                    <div><b>Author: @comment.AutorName</b></div>
+                    Text: @comment.Comment1
+                    <hr />
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="display-label">
+            Комментариев нет
+        </div>
+    }
+
+    @{
+        Comment newComment;
+        using (var blogs = new SimpleBlogEntities())
+        {
+            newComment = blogs.Comment.Create();
+            newComment.IdPost = Model.Id;
+        }
+    }
+    @Html.Partial("AddCommentPartial", newComment)
+</fieldset>
+<p>
+    @Html.ActionLink("Back to Blog", "BlogView", new {id=Model.IdBlog})
+</p>

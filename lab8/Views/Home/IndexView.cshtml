@@ -1,0 +1,21 @@
+﻿@model List<lab8.Models.Blog>
+
+<h2>IndexView</h2>
+<h3>Привет!</h3>
+<div>Добро пожаловать на страницу с нашими блогами. Они невероятно интересные!</div>
+
+@*<script>
+    var b = { "Name": "SuperBlog" }
+    console.log("Log starts:");
+</script>*@
+
+@Html.ActionLink("Добавить блог", "AddBlog")
+
+<ul>
+    @foreach (var b in Model)
+    {
+        <li>
+            @Html.ActionLink(@b.Name, "BlogView", new { id = b.Id })
+        </li>
+    }
+</ul>

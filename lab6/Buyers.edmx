@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BuyersModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BuyersModelStoreContainer">
+    <EntitySet Name="Buys" EntityType="BuyersModel.Store.Buys" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BuyMerchandises" EntityType="BuyersModel.Store.BuyMerchandises" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="BuyersModel.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Discounts" EntityType="BuyersModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Merchandises" EntityType="BuyersModel.Store.Merchandises" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BuyBuyMerchandise" Association="BuyersModel.Store.FK_BuyBuyMerchandise">
+      <End Role="Buy" EntitySet="Buys" />
+      <End Role="BuyMerchandise" EntitySet="BuyMerchandises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientBuy" Association="BuyersModel.Store.FK_ClientBuy">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Buy" EntitySet="Buys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiscountBuy" Association="BuyersModel.Store.FK_DiscountBuy">
+      <End Role="Discount" EntitySet="Discounts" />
+      <End Role="Buy" EntitySet="Buys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchandiseBuyMerchandise" Association="BuyersModel.Store.FK_MerchandiseBuyMerchandise">
+      <End Role="Merchandise" EntitySet="Merchandises" />
+      <End Role="BuyMerchandise" EntitySet="BuyMerchandises" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Buys">
+    <Key>
+      <PropertyRef Name="Идентификатор" />
+    </Key>
+    <Property Name="Идентификатор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Client_Идентификатор" Type="int" Nullable="false" />
+    <Property Name="Discount_Идентификатор" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BuyMerchandises">
+    <Key>
+      <PropertyRef Name="Идентификатор" />
+    </Key>
+    <Property Name="Идентификатор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Count" Type="smallint" Nullable="false" />
+    <Property Name="Merchandise_Идентификатор" Type="int" Nullable="false" />
+    <Property Name="Buy_Идентификатор" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Идентификатор" />
+    </Key>
+    <Property Name="Идентификатор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Discounts">
+    <Key>
+      <PropertyRef Name="Идентификатор" />
+    </Key>
+    <Property Name="Идентификатор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Percents" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Merchandises">
+    <Key>
+      <PropertyRef Name="Идентификатор" />
+    </Key>
+    <Property Name="Идентификатор" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BuyBuyMerchandise">
+    <End Role="Buy" Type="BuyersModel.Store.Buys" Multiplicity="1" />
+    <End Role="BuyMerchandise" Type="BuyersModel.Store.BuyMerchandises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buy">
+        <PropertyRef Name="Идентификатор" />
+      </Principal>
+      <Dependent Role="BuyMerchandise">
+        <PropertyRef Name="Buy_Идентификатор" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientBuy">
+    <End Role="Client" Type="BuyersModel.Store.Clients" Multiplicity="1" />
+    <End Role="Buy" Type="BuyersModel.Store.Buys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Идентификатор" />
+      </Principal>
+      <Dependent Role="Buy">
+        <PropertyRef Name="Client_Идентификатор" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiscountBuy">
+    <End Role="Discount" Type="BuyersModel.Store.Discounts" Multiplicity="1" />
+    <End Role="Buy" Type="BuyersModel.Store.Buys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discount">
+        <PropertyRef Name="Идентификатор" />
+      </Principal>
+      <Dependent Role="Buy">
+        <PropertyRef Name="Discount_Идентификатор" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchandiseBuyMerchandise">
+    <End Role="Merchandise" Type="BuyersModel.Store.Merchandises" Multiplicity="1" />
+    <End Role="BuyMerchandise" Type="BuyersModel.Store.BuyMerchandises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchandise">
+        <PropertyRef Name="Идентификатор" />
+      </Principal>
+      <Dependent Role="BuyMerchandise">
+        <PropertyRef Name="Merchandise_Идентификатор" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BuyersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Buy">
+          <Key>
+            <PropertyRef Name="Идентификатор" />
+          </Key>
+          <Property Name="Идентификатор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Client_Идентификатор" Type="Int32" Nullable="false" />
+          <Property Name="Discount_Идентификатор" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BuyMerchandises" Relationship="Self.FK_BuyBuyMerchandise" FromRole="Buy" ToRole="BuyMerchandise" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_ClientBuy" FromRole="Buy" ToRole="Client" />
+          <NavigationProperty Name="Discount" Relationship="Self.FK_DiscountBuy" FromRole="Buy" ToRole="Discount" />
+        </EntityType>
+        <EntityType Name="BuyMerchandise">
+          <Key>
+            <PropertyRef Name="Идентификатор" />
+          </Key>
+          <Property Name="Идентификатор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Count" Type="Int16" Nullable="false" />
+          <Property Name="Merchandise_Идентификатор" Type="Int32" Nullable="false" />
+          <Property Name="Buy_Идентификатор" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Buy" Relationship="Self.FK_BuyBuyMerchandise" FromRole="BuyMerchandise" ToRole="Buy" />
+          <NavigationProperty Name="Merchandise" Relationship="Self.FK_MerchandiseBuyMerchandise" FromRole="BuyMerchandise" ToRole="Merchandise" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Идентификатор" />
+          </Key>
+          <Property Name="Идентификатор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Buys" Relationship="Self.FK_ClientBuy" FromRole="Client" ToRole="Buy" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Идентификатор" />
+          </Key>
+          <Property Name="Идентификатор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Percents" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Buys" Relationship="Self.FK_DiscountBuy" FromRole="Discount" ToRole="Buy" />
+        </EntityType>
+        <EntityType Name="Merchandise">
+          <Key>
+            <PropertyRef Name="Идентификатор" />
+          </Key>
+          <Property Name="Идентификатор" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="BuyMerchandises" Relationship="Self.FK_MerchandiseBuyMerchandise" FromRole="Merchandise" ToRole="BuyMerchandise" />
+        </EntityType>
+        <Association Name="FK_BuyBuyMerchandise">
+          <End Role="Buy" Type="Self.Buy" Multiplicity="1" />
+          <End Role="BuyMerchandise" Type="Self.BuyMerchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buy">
+              <PropertyRef Name="Идентификатор" />
+            </Principal>
+            <Dependent Role="BuyMerchandise">
+              <PropertyRef Name="Buy_Идентификатор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientBuy">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Buy" Type="Self.Buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Идентификатор" />
+            </Principal>
+            <Dependent Role="Buy">
+              <PropertyRef Name="Client_Идентификатор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscountBuy">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="1" />
+          <End Role="Buy" Type="Self.Buy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="Идентификатор" />
+            </Principal>
+            <Dependent Role="Buy">
+              <PropertyRef Name="Discount_Идентификатор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchandiseBuyMerchandise">
+          <End Role="Merchandise" Type="Self.Merchandise" Multiplicity="1" />
+          <End Role="BuyMerchandise" Type="Self.BuyMerchandise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchandise">
+              <PropertyRef Name="Идентификатор" />
+            </Principal>
+            <Dependent Role="BuyMerchandise">
+              <PropertyRef Name="Merchandise_Идентификатор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BuyersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buys" EntityType="Self.Buy" />
+          <EntitySet Name="BuyMerchandises" EntityType="Self.BuyMerchandise" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Discounts" EntityType="Self.Discount" />
+          <EntitySet Name="Merchandises" EntityType="Self.Merchandise" />
+          <AssociationSet Name="FK_BuyBuyMerchandise" Association="Self.FK_BuyBuyMerchandise">
+            <End Role="Buy" EntitySet="Buys" />
+            <End Role="BuyMerchandise" EntitySet="BuyMerchandises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientBuy" Association="Self.FK_ClientBuy">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Buy" EntitySet="Buys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscountBuy" Association="Self.FK_DiscountBuy">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="Buy" EntitySet="Buys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchandiseBuyMerchandise" Association="Self.FK_MerchandiseBuyMerchandise">
+            <End Role="Merchandise" EntitySet="Merchandises" />
+            <End Role="BuyMerchandise" EntitySet="BuyMerchandises" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BuyersModelStoreContainer" CdmEntityContainer="BuyersEntities">
+    <EntitySetMapping Name="Buys">
+      <EntityTypeMapping TypeName="IsTypeOf(BuyersModel.Buy)">
+        <MappingFragment StoreEntitySet="Buys">
+          <ScalarProperty Name="Идентификатор" ColumnName="Идентификатор" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Client_Идентификатор" ColumnName="Client_Идентификатор" />
+          <ScalarProperty Name="Discount_Идентификатор" ColumnName="Discount_Идентификатор" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BuyMerchandises">
+      <EntityTypeMapping TypeName="IsTypeOf(BuyersModel.BuyMerchandise)">
+        <MappingFragment StoreEntitySet="BuyMerchandises">
+          <ScalarProperty Name="Идентификатор" ColumnName="Идентификатор" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Merchandise_Идентификатор" ColumnName="Merchandise_Идентификатор" />
+          <ScalarProperty Name="Buy_Идентификатор" ColumnName="Buy_Идентификатор" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(BuyersModel.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Идентификатор" ColumnName="Идентификатор" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="IsTypeOf(BuyersModel.Discount)">
+        <MappingFragment StoreEntitySet="Discounts">
+          <ScalarProperty Name="Идентификатор" ColumnName="Идентификатор" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Percents" ColumnName="Percents" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchandises">
+      <EntityTypeMapping TypeName="IsTypeOf(BuyersModel.Merchandise)">
+        <MappingFragment StoreEntitySet="Merchandises">
+          <ScalarProperty Name="Идентификатор" ColumnName="Идентификатор" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

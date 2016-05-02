@@ -1,0 +1,60 @@
+﻿@using lab8.Models
+@model Blog
+
+@{
+    ViewBag.Title = "BlogView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BlogView</h2>
+
+<fieldset>
+    <legend>Blog</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descroption)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descroption)
+    </div>
+
+    @if (!Model.Url.IsEmpty())
+    {
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Url)
+        </div>
+        <div class="display-field">
+            <a href="//@Model.Url">@Html.DisplayFor(model => model.Url)</a>
+        </div>
+    }
+
+    @if (Model.Post.Count > 0)
+    {
+        <div>
+            <div class="display-label">Посты</div>
+            @foreach (var post in Model.Post)
+            {
+                @Html.Partial("PostPartial", post)
+            }
+        </div>
+    }
+    else
+    {
+        <div class="display-label">
+            Постов нет
+        </div>
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "EditBlog", new { id=Model.Id }) |
+    @Html.ActionLink("Delete", "DeleteBlog", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+
+</p>
