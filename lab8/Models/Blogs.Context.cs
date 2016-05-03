@@ -9,9 +9,10 @@
 
 namespace lab8.Models
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class SimpleBlogEntities : DbContext
     {
         public SimpleBlogEntities()

@@ -9,8 +9,9 @@
 
 namespace lab8.Models
 {
+    using System;
     using System.Collections.Generic;
-
+    
     public partial class Blog
     {
         public Blog()
