@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace lab9
+﻿namespace lab9
 {
     static class Program
     {

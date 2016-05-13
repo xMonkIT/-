@@ -194,7 +194,7 @@ namespace lab6
         public void ShowClientsCountWithDiscount(decimal discount, Label l)
         {
             l.Text = context.Buys
-                .Where(x => x.Discount.Percents > discount)
+                .Where(x => x.Discount.Percents >= discount)
                 .Select(x => x.Client)
                 .Distinct()
                 .Count()
@@ -210,8 +210,8 @@ namespace lab6
                     Sum = x.BuyMerchandises.Sum(y => y.Count*y.Merchandise.Price)*x.Discount.Percents/100
                 })
                 .OrderByDescending(x => x.Sum)
-                .First();
-            l.Text = $"{data.Client.GetFullName()}\n{data.Sum:C}";
+                .FirstOrDefault();
+            l.Text = $"{data?.Client.GetFullName() ?? ""}\n{data?.Sum ?? 0:C}";
         }
 
         public void ShowBuysHigherAvg(DataGridView dgvData, Label lAvg)
