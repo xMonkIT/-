@@ -8,22 +8,22 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Comment</legend>
+    <fieldset class="row">
+        <legend class="col-sm-12">Comment</legend>
 
-        <div class="editor-label">
+        <div class="editor-label col-sm-2">
             @Html.LabelFor(model => model.AutorName)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AutorName)
+        <div class="editor-field col-sm-10">
+            @Html.TextBoxFor(model => model.AutorName, new { @class ="form-control" })
             @Html.ValidationMessageFor(model => model.AutorName)
         </div>
 
-        <div class="editor-label">
+        <div class="editor-label col-sm-2">
             @Html.LabelFor(model => model.Comment1)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Comment1)
+        <div class="editor-field col-sm-10">
+            @Html.TextBoxFor(model => model.Comment1, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Comment1)
         </div>
 
@@ -37,8 +37,8 @@
             @Html.ValidationMessageFor(model => model.IdPost)
         </div>*@
 
-        <p>
-            <input type="submit" value="Create" />
+        <p class="col-sm-12">
+            <input type="submit" value="Create" class="btn btn-default" />
         </p>
     </fieldset>
 }

@@ -8,29 +8,29 @@
 
 <h2>BlogView</h2>
 
-<fieldset>
-    <legend>Blog</legend>
+<fieldset class="row">
+    <legend class="col-md-12">Blog</legend>
 
-    <div class="display-label">
+    <div class="display-label col-sm-2">
          @Html.DisplayNameFor(model => model.Name)
     </div>
-    <div class="display-field">
+    <div class="display-field col-sm-10">
         @Html.DisplayFor(model => model.Name)
     </div>
 
-    <div class="display-label">
+    <div class="display-label col-sm-2">
          @Html.DisplayNameFor(model => model.Descroption)
     </div>
-    <div class="display-field">
+    <div class="display-field col-sm-10">
         @Html.DisplayFor(model => model.Descroption)
     </div>
 
     @if (!Model.Url.IsEmpty())
     {
-        <div class="display-label">
+        <div class="display-label col-sm-2">
             @Html.DisplayNameFor(model => model.Url)
         </div>
-        <div class="display-field">
+        <div class="display-field col-sm-10">
             <a href="//@Model.Url">@Html.DisplayFor(model => model.Url)</a>
         </div>
     }
@@ -38,7 +38,7 @@
     @if (Model.Post.Count > 0)
     {
         <div>
-            <div class="display-label">Посты</div>
+            <div class="display-label col-sm-12"><h4>Посты</h4></div>
             @foreach (var post in Model.Post)
             {
                 @Html.Partial("PostPartial", post)
@@ -47,7 +47,7 @@
     }
     else
     {
-        <div class="display-label">
+        <div class="display-label col-sm-12">
             Постов нет
         </div>
     }

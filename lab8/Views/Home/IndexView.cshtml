@@ -9,13 +9,15 @@
     console.log("Log starts:");
 </script>*@
 
-@Html.ActionLink("Добавить блог", "AddBlog")
+@Html.ActionLink("Добавить блог", "AddBlog", "Home", new { @class = "btn btn-primary" })
 
-<ul>
+<hr />
+
+<ul class="list-group">
     @foreach (var b in Model)
     {
-        <li>
-            @Html.ActionLink(@b.Name, "BlogView", new { id = b.Id })
+        <li class="list-group-item">
+            @Html.ActionLink(b.Name.IsEmpty() ? "nope" : b.Name, "BlogView", new { id = b.Id }, new { @class = "" })
         </li>
     }
 </ul>

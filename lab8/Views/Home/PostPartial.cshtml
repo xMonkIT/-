@@ -1,8 +1,8 @@
 ﻿@using lab8.Models
-@model lab8.Models.Post
+@model Post
 
-<div class="display-field">
-    <div><b>@Html.ActionLink(@Model.Title, "PostView", new { id = Model.Id })</b></div>
+<div class="display-field col-sm-12 post-list">
+    <div><h5>@Html.ActionLink(Model.Title, "PostView", new { id = Model.Id })</h5></div>
     <div>@Model.Content.Substring(0, 300)</div>
     @{
         var count = Model.Comment.Count;
@@ -11,5 +11,4 @@
             count%10 == 1 ? count + " комментарий" : count + " комментария";
     }
     <i>@countStr</i>
-    <hr/>
 </div>

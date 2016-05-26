@@ -5,43 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditBlog</h2>
+<div class="row">
+    <h2 class="col-sm-12">EditBlog</h2>
+</div>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Blog</legend>
+    <fieldset class="row">
+        <legend class="col-sm-12">Blog</legend>
 
         @Html.HiddenFor(model => model.Id)
 
-        <div class="editor-label">
+        <div class="editor-label col-sm-2">
             @Html.LabelFor(model => model.Name)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
+        <div class="editor-field col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <div class="editor-label">
+        <div class="editor-label col-sm-2">
             @Html.LabelFor(model => model.Descroption)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Descroption)
+        <div class="editor-field col-sm-10">
+            @Html.TextBoxFor(model => model.Descroption, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Descroption)
         </div>
 
-        <div class="editor-label">
+        <div class="editor-label col-sm-2">
             @Html.LabelFor(model => model.Url)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Url)
+        <div class="editor-field col-sm-10">
+            @Html.TextBoxFor(model => model.Url, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Url)
         </div>
 
-        <p>
-            <input type="submit" value="Save" />
+        <p class="col-sm-12">
+            <input type="submit" value="Save" class="btn btn-default" />
         </p>
     </fieldset>
 }

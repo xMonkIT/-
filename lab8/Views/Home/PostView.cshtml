@@ -1,47 +1,49 @@
 ﻿@using lab8.Models
-@model lab8.Models.Post
+@model Post
 
 @{
     ViewBag.Title = "PostView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>PostView</h2>
+<div class="row">
+    <h2 class="col-sm-12">PostView</h2>
+</div>
 
-<fieldset>
-    <legend>Post</legend>
+<fieldset class="row">
+    <legend class="col-sm-12">Post</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
+    <div class="display-label col-sm-2">
+        @Html.DisplayNameFor(model => model.Title)
     </div>
-    <div class="display-field">
+    <div class="display-field col-sm-10">
         @Html.DisplayFor(model => model.Title)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Content)
+    <div class="display-label col-sm-2">
+        @Html.DisplayNameFor(model => model.Content)
     </div>
-    <div class="display-field">
+    <div class="display-field col-sm-10">
         @Html.DisplayFor(model => model.Content)
     </div>
 
     @if (Model.Comment.Count > 0)
     {
-        <div>
-            <div class="display-label">Комментарии</div>
+        <div class="col-sm-12">
+            <div class="display-label"><h4>Комментарии</h4>
+            </div>
             @foreach (var comment in Model.Comment)
             {
-                <div class="display-field comment">
-                    <div><b>Author: @comment.AutorName</b></div>
+                <p class="display-field comment">
+                    <b>Author: @comment.AutorName</b><br/>
                     Text: @comment.Comment1
-                    <hr />
-                </div>
+                </p>
             }
         </div>
     }
     else
     {
-        <div class="display-label">
+        <div class="display-label col-sm-12">
             Комментариев нет
         </div>
     }
@@ -54,8 +56,10 @@
             newComment.IdPost = Model.Id;
         }
     }
-    @Html.Partial("AddCommentPartial", newComment)
 </fieldset>
+
+@Html.Partial("AddCommentPartial", newComment)
+
 <p>
     @Html.ActionLink("Back to Blog", "BlogView", new {id=Model.IdBlog})
 </p>
