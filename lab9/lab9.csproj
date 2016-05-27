@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factory\SimpleFactory\ChicagoPizza.cs" />
-    <Compile Include="Factory\SimpleFactory\NyPizza.cs" />
+    <Compile Include="Factory\SimpleFactory\ChicagoPizzaSimpleFactory.cs" />
+    <Compile Include="Factory\SimpleFactory\IPizzaSimpleFactory.cs" />
+    <Compile Include="Factory\SimpleFactory\NyPizzaSimpleFactory.cs" />
+    <Compile Include="Factory\SimpleFactory\PizzaStore.cs" />
     <Compile Include="PizzaMenu\ChicagoPizza\ChicagoPizza.cs" />
     <Compile Include="PizzaMenu\NYPizza\NYPizza.cs" />
     <Compile Include="PizzaMenu\ChicagoPizza\ChicagoCheesePizza.cs" />
