@@ -29,6 +29,8 @@ namespace lab9
 
                 var store = new PizzaStore(factory);
 
+                Console.WriteLine($"Доступные виды пиццы:\n{string.Join("\n", store.GetMenu())}\n");
+
                 Console.Write("Введите название пиццы: ");
                 input = Console.ReadLine();
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using lab9.PizzaMenu;
 using lab9.PizzaMenu.ChicagoPizza;
 
@@ -18,5 +19,7 @@ namespace lab9.Factory.SimpleFactory
                     throw new ArgumentException("отсутствует такой вид пиццки", name);
             }
         }
+
+        public IEnumerable<string> GetMenu() => new List<string> { "cheese", "veggy" };
     }
 }

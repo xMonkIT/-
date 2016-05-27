@@ -1,4 +1,5 @@
-﻿using lab9.PizzaMenu;
+﻿using System.Collections.Generic;
+using lab9.PizzaMenu;
 
 namespace lab9.Factory.SimpleFactory
 {
@@ -22,5 +23,7 @@ namespace lab9.Factory.SimpleFactory
 
             return pizza;
         }
+
+        public IEnumerable<string> GetMenu() => _factory.GetMenu();
     }
 }
