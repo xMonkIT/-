@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\FactoryMethod\ChicagoPizzaStore.cs" />
+    <Compile Include="Factory\FactoryMethod\NyPizzaStore.cs" />
+    <Compile Include="Factory\FactoryMethod\PizzaStore.cs" />
     <Compile Include="Factory\SimpleFactory\ChicagoPizzaSimpleFactory.cs" />
     <Compile Include="Factory\SimpleFactory\IPizzaSimpleFactory.cs" />
     <Compile Include="Factory\SimpleFactory\NyPizzaSimpleFactory.cs" />
@@ -64,9 +67,7 @@
   <ItemGroup>
     <Content Include="Задание.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factory\FactoryMethod\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
