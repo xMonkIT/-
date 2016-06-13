@@ -6,11 +6,11 @@ using lab10.Domain;
 
 namespace lab10
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Weatherdata wd = new Weatherdata();
+            var wd = new Weatherdata();
 
             var displays = new List<IWeatherObserver>
             {
@@ -18,7 +18,7 @@ namespace lab10
                 new StatisticsDisplay(),
                 new CurrentStateDisplay(),
                 new ChangesDisplay(),
-                new TodayMaxValuesDisplay(),
+                new TodayMinMaxValuesDisplay(),
                 new StormWarningDisplay(),
                 new ForecastDisplay()
             };

@@ -30,10 +30,12 @@ namespace lab10.Displays
             var curr = _weatherParamsList[_weatherParamsList.Count - 1];
             var prev = _weatherParamsList[_weatherParamsList.Count - 2];
 
-            Console.WriteLine($"Разница в температуре: {curr.Temperature - prev.Temperature} градусов\n" +
-                              $"Разница в давлении: {curr.Pressure - prev.Pressure} мм\n" +
-                              $"Разница во влажности: {curr.Humidity - prev.Humidity}%\n" +
-                              $"Время между измерениями: {curr.Time - prev.Time}");
+            Console.WriteLine(
+                "Изменения по сравнению с предыдущим замером:\n" +
+                $"\tВ температуре: {curr.Temperature - prev.Temperature} градусов\n" +
+                $"\tВ давлении: {curr.Pressure - prev.Pressure} мм\n" +
+                $"\tВо влажности: {curr.Humidity - prev.Humidity}%\n" +
+                $"\tВремя между измерениями: {curr.Time - prev.Time}");
         }
 
         public override void Update(WeatherParams p)

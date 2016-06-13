@@ -9,9 +9,10 @@ namespace lab10.Displays
         {
             if (currentWeather.WindSpeed <= 15) return;
 
-            Console.WriteLine("Внимание! Объявлено штормовое предупреждение! " +
-                              $"Ветер {currentWeather.WindDirection.GetNameOfDirection()}," +
-                              $"{currentWeather.WindSpeed} м/с");
+            Console.WriteLine(
+                "Внимание! Объявлено штормовое предупреждение! " +
+                $"Ветер {currentWeather.WindDirection.GetNameOfDirection()}," +
+                $"{currentWeather.WindSpeed} м/с");
         }
     }
 }

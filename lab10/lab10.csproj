@@ -58,12 +58,13 @@
     <Compile Include="Displays\IDisplay.cs" />
     <Compile Include="Displays\StatisticsDisplay.cs" />
     <Compile Include="Displays\StormWarningDisplay.cs" />
-    <Compile Include="Displays\TodayMaxValuesDisplay.cs" />
+    <Compile Include="Displays\TodayMinMaxValuesDisplay.cs" />
     <Compile Include="Displays\WeatherDisplay.cs" />
     <Compile Include="Domain\IObservable.cs" />
     <Compile Include="Domain\IObserver.cs" />
     <Compile Include="Domain\Weatherdata.cs" />
     <Compile Include="Domain\WeatherParams.cs" />
+    <Compile Include="Domain\WindDirection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
